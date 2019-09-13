@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       // changePdf: true,
       // openMenu : true,
-      url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/BargigShopUsers%2FMor%20Bargig%20CV.pdf?alt=media&token=f6881d50-a3f8-494f-a715-791709b555f4'
+      // url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/BargigShopUsers%2FMor%20Bargig%20CV.pdf?alt=media&token=f6881d50-a3f8-494f-a715-791709b555f4'
     }
   }
 
@@ -108,9 +108,9 @@ class App extends Component {
         <button onClick={this.handleUpload}>Upload Image</button><button onClick={this.updatePdf}>update pdf </button></div> : null}
       <h2 className="header">Mor Bargig CV  </h2>
 
-      <div class="topnav">
+      <div className="topnav">
 
-        <a onClick={this.openMenu} class="active">menu</a>
+        <a onClick={this.openMenu} className="active">menu</a>
         {this.state.openMenu ?
           <div id="myLinks">
             <a href={this.state.url} >pdf</a>
