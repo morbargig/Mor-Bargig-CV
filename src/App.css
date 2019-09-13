@@ -70,8 +70,9 @@ body {
   font-size: 17px;
 }
 
-.topnav a.icon {
+.topnav a.Admin {
   float: right;
+  background-color: black
 }
 
 .topnav a:hover {
@@ -84,8 +85,4 @@ body {
   color: white;
 }
 
-.Admin {
-  background-color: black;
-  margin-left: 60vw
-  
-}
+
