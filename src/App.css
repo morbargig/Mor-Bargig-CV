@@ -77,7 +77,6 @@ body {
 
 .topnav a:hover {
   background-color: #ddd;
-  color: black;
 }
 
 .active {
@@ -87,6 +86,7 @@ body {
 
 .topnav a.Portfolio{
   float: right;
+  /* color: black; */
 }
 
 
