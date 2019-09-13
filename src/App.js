@@ -1,26 +1,127 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+// import firebase from 'firebase';
+import firebase from './config/firebase';
+import axios from 'axios'
+import route from './config/route'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      // changePdf: true,
+      url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/BargigShopUsers%2FMor%20Bargig%20CV.pdf?alt=media&token=f6881d50-a3f8-494f-a715-791709b555f4'
+    }
+  }
+
+  componentDidMount = async () => {
+    if (!this.state.isImageUpsate) {
+      const res = await axios.get(`${route}getPdf`)
+      let pdf = res.data[0].pdf
+      this.setState({ url: pdf, isImageUpsate: true })
+    }
+  }
+
+  handleImage = (e) => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0]
+      this.setState({
+        uploadedImage: image
+      })
+    }
+  }
+
+  handleUpload = () => {
+    console.log("kjgjyfjukguyv")
+    const { uploadedImage } = this.state
+    if (this.state.uploadedImage === null) {
+      alert('Please pick a valid image!')
+    }
+    else {
+      const uploadTask = firebase.storage().ref(`/MorBargigPdf/${uploadedImage.name}`).put(uploadedImage)
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          // progress function
+        },
+        (error) => {
+          console.log(error)
+        },
+        () => {
+          firebase.storage().ref('MorBargigPdf').child(uploadedImage.name).getDownloadURL().then(url => {
+            this.setState({
+              img: url
+            })
+            console.log(this.state.img)
+
+          })
+        }
+      )
+    }
+    console.log(this.state)
+  }
+
+  // updateImage = () => {
+  //   let image = prompt('Please enter your', 'image')
+  //   if (image === null || image === "" || image === "image") {
+  //     console.log("jhvjhv")
+  //   }
+  // }
+
+
+  admin = () => {
+    let Password = prompt("Please enter your Admin Password", "Password");
+    console.log(Password)
+    if (Password === null || Password === "" || Password === "Password") {
+      return null
+    }
+    if (Password === "bargig123456") {
+      console.log("kjsjkbkjb")
+      this.setState({ changePdf: true })
+      // this.updateImage()
+    }
+    if (Password !== "bargig123456") {
+      alert("Hi your not my Admin, watch out!! ")
+    }
+  }
+
+  updatePdf = async () => {
+    let pdf = this.state.img
+    console.log(pdf)
+    let upDate = {
+      pdf: pdf
+    }
+    await axios.put(`${route}upDatePdf/`, upDate)
+    window.location.reload()
+  }
+
+  render() {
+    return (<div>
+      {/* <a> */}
+      {this.state.changePdf ? <div> <input type="file" onChange={this.handleImage} />
+        <button onClick={this.handleUpload}>Upload Image</button><button onClick={this.updatePdf}>update pdf </button></div> : null}
+      <h2 className="header">Mor Bargig CV  </h2>
+
+      <ul>
+        <li><a href={this.state.url}>pdf</a></li>
+        <li><a href="abouthttps://5d60919cef31b.site123.me/">My Web Site</a></li>
+        <li><a href="https://github.com/morbargig?tab=repositories">GitHub</a></li>
+        <li><a href="https://github.com/morbargig?tab=repositories">LinkedIn</a></li>
+        <li><a onClick={this.admin} className='Admin' >Admin ?</a></li>
+      </ul>
+      {/* <h3> <a href={url}>Mor Bargig CV</a> </h3> */}
+      <embed type="application/pdf"
+        src={this.state.url}
+        width="100%" height="1500px" alt="pdf"
+        pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
+        background-color="0xFF525659"
+        top-toolbar-height="56"
+        full-frame=""
+        internalinstanceid="21"
+        title="Mor Bargig"></embed>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
