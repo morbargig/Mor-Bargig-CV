@@ -1,4 +1,4 @@
 // const route  = 'http://localhost:8000/'
-const route = '/'
+const route = '/' 
 
 export default route

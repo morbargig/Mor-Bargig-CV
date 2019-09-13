@@ -11,6 +11,7 @@ class App extends Component {
     super()
     this.state = {
       // changePdf: true,
+      openMenu : true,
       url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/BargigShopUsers%2FMor%20Bargig%20CV.pdf?alt=media&token=f6881d50-a3f8-494f-a715-791709b555f4'
     }
   }
@@ -95,6 +96,11 @@ class App extends Component {
     window.location.reload()
   }
 
+  openMenu = () => {
+let x =this.state.openMenu 
+this.setState({ openMenu : !x})
+  }
+
   render() {
     return (<div>
       {/* <a> */}
@@ -102,23 +108,57 @@ class App extends Component {
         <button onClick={this.handleUpload}>Upload Image</button><button onClick={this.updatePdf}>update pdf </button></div> : null}
       <h2 className="header">Mor Bargig CV  </h2>
 
-      <ul>
+
+
+
+
+      <div class="mobile-container">
+
+        <div class="topnav">
+          {/* <a href="#home" >Logo</a> */}
+          {/* <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a> */}
+          <a onClick={this.openMenu} class="active">menu</a>
+          {this.state.openMenu ?
+            <div id="myLinks">
+              <a href={this.state.url} >pdf</a>
+              <a href="https://5d60919cef31b.site123.me/">My Web Site</a>
+              <a href="https://github.com/morbargig?tab=repositories">GitHub</a>
+              <a href="https://www.linkedin.com/in/mor-bargig-744854182/">LinkedIn</a>
+              <a onClick={this.admin} className='Admin' >Admin ?</a>
+            </div>
+            : null}
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+
+        {/* <div style="padding-left:16px"> */}
+
+
+        {/* <!-- End smartphone / tablet look --> */}
+
+
+
+        {/* <ul>
         <li><a href={this.state.url}>pdf</a></li>
         <li><a href="abouthttps://5d60919cef31b.site123.me/">My Web Site</a></li>
         <li><a href="https://github.com/morbargig?tab=repositories">GitHub</a></li>
         <li><a href="https://github.com/morbargig?tab=repositories">LinkedIn</a></li>
         <li><a onClick={this.admin} className='Admin' >Admin ?</a></li>
-      </ul>
-      {/* <h3> <a href={url}>Mor Bargig CV</a> </h3> */}
-      <embed type="application/pdf"
-        src={this.state.url}
-        width="100%" height="1500px" alt="pdf"
-        pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
-        background-color="0xFF525659"
-        top-toolbar-height="56"
-        full-frame=""
-        internalinstanceid="21"
-        title="Mor Bargig"></embed>
+      </ul> */}
+        {/* <h3> <a href={url}>Mor Bargig CV</a> </h3> */}
+        <embed type="application/pdf"
+          src={this.state.url}
+          width="100%" height="1000px" alt="pdf"
+          pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
+          background-color="0xFF525659"
+          top-toolbar-height="56"
+          full-frame=""
+          internalinstanceid="22"
+          title="Mor Bargig"></embed>
+      </div>
     </div>
     );
   }
