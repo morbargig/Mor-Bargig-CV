@@ -109,8 +109,8 @@ class App extends Component {
 
   pdfForMobile = () => {
     if (this.state.isMobile) {
-      let answer = confirm("You are browsing a mobile device am I right ? :) would you like to go to a suitable site ? ?")
-      if (answer) { window.open(this.state.url) }
+      let answer = window.confirm("You are browsing a mobile device am I right ? :) would you like to go to a suitable site ? ?")
+      if (answer) { window.open(this.state.url) } else { return null }
     }
   }
 
