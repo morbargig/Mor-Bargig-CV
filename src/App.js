@@ -117,9 +117,12 @@ class App extends Component {
             <a href="https://5d60919cef31b.site123.me/">My Web Site</a>
             <a href="https://github.com/morbargig?tab=repositories">GitHub</a>
             <a href="https://www.linkedin.com/in/mor-bargig-744854182/">LinkedIn</a>
+            <a href="tel:+972 52-861-2379"> Contact </a>
+            <a href="tel:+972 52-861-2379"> Contact </a>
+            <a href="mailto:mobargig@gmail.com"> Email</a>
             <a onClick={this.admin} className='Admin' >Admin ?</a>
           </div>
-          : null}
+          : <a href="https://5d60919cef31b.site123.me/">Portfolio</a>}
       </div>
 
       <embed type="application/pdf"
