@@ -124,7 +124,7 @@ class App extends Component {
 
       <embed type="application/pdf"
         src={this.state.url}
-        width="100%" height="650" alt="pdf"
+        width="100%" height="650px" alt="pdf"
         pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
         background-color="0xFF525659"
         top-toolbar-height="56"
