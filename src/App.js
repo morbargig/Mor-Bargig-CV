@@ -126,7 +126,7 @@ class App extends Component {
 
       <div className="topnav">
 
-        <a onClick={this.openMenu} className="active">menu</a>
+        <a onClick={this.openMenu} className="active">Menu</a>
         {this.state.openMenu ?
           <div id="myLinks">
             <a href={this.state.url} >pdf</a>
