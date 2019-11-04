@@ -20,7 +20,7 @@ class App extends Component {
     if (!this.state.isImageUpsate) {
       const res = await axios.get(`${route}getPdf`)
       let data = res.data[0]
-      console.log(res.data[0])
+      // console.log(res.data[0])
       this.setState({ url: data[data.language], EngPDF : data.EngPDF, HebPDF : data.HebPDF ,linkedin : data.linkedin, language: data.language, isImageUpsate: true })
     }
     if (this.state.isMobile === undefined) {
@@ -142,7 +142,7 @@ class App extends Component {
     }
     this.setState({ url : this.state[name] , language : name })
     await axios.put(`${route}upDatePdf/`, upDate)
-    console.log(name, upDate)
+    // console.log(name, upDate)
     // window.location.reload()
   }
 
