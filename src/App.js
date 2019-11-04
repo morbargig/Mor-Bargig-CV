@@ -166,14 +166,14 @@ class App extends Component {
         {this.state.openMenu ?
           <div id="myLinks">
             <a href={this.state.url} target="blank">pdf</a>
-            <a href="https://5d60919cef31b.site123.me/">My Web Site</a>
-            <a href="https://github.com/morbargig?tab=repositories">GitHub</a>
-            <a href="https://www.linkedin.com/in/mor-bargig-744854182/">LinkedIn</a>
-            <a href="tel:+972 52-861-2379"> Contact </a>
-            <a href="mailto:mobargig@gmail.com"> Email</a>
+            <a href="https://5d60919cef31b.site123.me/" target="blank">My Web Site</a>
+            <a href="https://github.com/morbargig?tab=repositories" target="blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/mor-bargig-744854182/" target="blank">LinkedIn</a>
+            <a href="tel:+972 52-861-2379" target="blank"> Contact </a>
+            <a href="mailto:mobargig@gmail.com" target="blank"> Email</a>
             <a onClick={this.admin} className='Admin' >Admin ?</a>
           </div>
-          : <a className="Portfolio" href="https://5d60919cef31b.site123.me/">Portfolio</a>}
+          : <a className="Portfolio" href="https://morbargig.github.io/morbargig/" target="blank">Portfolio</a>}
       </div>
 
       <embed
