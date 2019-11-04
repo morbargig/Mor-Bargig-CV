@@ -17,7 +17,6 @@ addFirstPdf = function () {
     let p1 = new Pdf(firstPdf)
     p1.save()
 }
-
 // addFirstPdf()
 
 router.get('/getPdf', (req, res) => {

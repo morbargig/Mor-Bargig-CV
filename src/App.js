@@ -19,8 +19,9 @@ class App extends Component {
   componentDidMount = async () => {
     if (!this.state.isImageUpsate) {
       const res = await axios.get(`${route}getPdf`)
-      let pdf = res.data[0].pdf
-      this.setState({ url: pdf, isImageUpsate: true })
+      let data = res.data[0]
+      console.log(res.data[0])
+      this.setState({ url: data[data.language], language: data.language, isImageUpsate: true })
     }
     if (this.state.isMobile === undefined) {
       if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
@@ -96,10 +97,26 @@ class App extends Component {
   }
 
   updatePdf = async () => {
+    let answer = prompt("R U Update English PDF","yes ,no or link");
+    // console.log(language)
+    let language 
+    if (answer === null || answer === "" || answer === 'yes ,no or link' ) {
+      alert( " cencel update")
+    }
+    if (answer === "yes") {
+     language = "EngPDF"
+    }
+    if (answer === "no") {
+     language = 'HebPDF'
+    }
+    if ( answer === "link"){
+      language = 'linkedin'
+    }
     let pdf = this.state.img
     console.log(pdf)
     let upDate = {
-      pdf: pdf
+      [language] : pdf,
+      language : language
     }
     await axios.put(`${route}upDatePdf/`, upDate)
     window.location.reload()
@@ -110,26 +127,45 @@ class App extends Component {
     this.setState({ openMenu: !x })
   }
 
-  pdfForMobile = () => {
-    // if (this.state.isMobile) {
-    //   let answer = window.confirm("You are browsing a mobile device am I right ? :) would you like to go to a suitable site ? ?")
-    //   if (answer) { window.open(this.state.url) } else { return null }
-    // }
+  // pdfForMobile = () => {
+  //   // if (this.state.isMobile) {
+  //   //   let answer = window.confirm("You are browsing a mobile device am I right ? :) would you like to go to a suitable site ? ?")
+  //   //   if (answer) { window.open(this.state.url) } else { return null }
+  //   // }
+  // }
+
+  getPDF = async (e) => {
+    let name = e.target.name
+    // let language = this.state[name]
+    let upDate = {
+      language: name
+    }
+    await axios.put(`${route}upDatePdf/`, upDate)
+    console.log(name, upDate)
+    window.location.reload()
   }
 
   render() {
+    let x = this.state.language === 'EngPDF'
+    let l = this.state.language === "linkedin"
+    let h = this.state.language === "HebPDF"
     return (<div>
       {/* <a> */}
       {this.state.changePdf ? <div> <input type="file" onChange={this.handleImage} />
         <button onClick={this.handleUpload}>Upload Image</button><button onClick={this.updatePdf}>update pdf </button></div> : null}
-      <h2 className="header">Mor Bargig CV  </h2>
+      <h2 className="header" > {!h ? "Mor Bargig CV" : ' מור ברגיג קו"ח'} </h2>
+      <button className={x ? "disabled" : null} name="EngPDF" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!x ? this.getPDF : null} > {!h ? 'English' : " אנגלית"} </button>
+      <button className={h ? "disabled" : null} name="HebPDF" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!h ? this.getPDF : null}  > {!h ? 'Hebrew' : "עברית"} </button>
+      <button className={l ? "disabled" : null} name="linkedin" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!l ? this.getPDF : null}  > {!h ? 'linkedin' : "לינקדין"} </button>
+     
+      {/* <h2 className="header"> <a name="EngPDF" >   </a> || <a name="HebPDF" onClick={this.getPDF}> </a> </h2> */}
 
       <div className="topnav">
 
         <a onClick={this.openMenu} className="active">Menu</a>
         {this.state.openMenu ?
           <div id="myLinks">
-            <a href={this.state.url} >pdf</a>
+            <a href={this.state.url} target="blank">pdf</a>
             <a href="https://5d60919cef31b.site123.me/">My Web Site</a>
             <a href="https://github.com/morbargig?tab=repositories">GitHub</a>
             <a href="https://www.linkedin.com/in/mor-bargig-744854182/">LinkedIn</a>
