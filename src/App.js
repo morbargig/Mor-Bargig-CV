@@ -10,6 +10,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/MorBargigPdf%2FProfile.pdf?alt=media&token=c9ee2b57-f5c6-45a4-9620-a7404c010dc0'
       // changePdf: true,
       // openMenu : true,
       // url: 'https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/BargigShopUsers%2FMor%20Bargig%20CV.pdf?alt=media&token=f6881d50-a3f8-494f-a715-791709b555f4'
@@ -21,7 +22,7 @@ class App extends Component {
       const res = await axios.get(`${route}getPdf`)
       let data = res.data[0]
       // console.log(res.data[0])
-      this.setState({ url: data[data.language], EngPDF : data.EngPDF, HebPDF : data.HebPDF ,linkedin : data.linkedin, language: data.language, isImageUpsate: true })
+      this.setState({ url: data[data.language], EngPDF: data.EngPDF, HebPDF: data.HebPDF, linkedin: data.linkedin, language: data.language, isImageUpsate: true })
     }
     if (this.state.isMobile === undefined) {
       if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
@@ -97,26 +98,26 @@ class App extends Component {
   }
 
   updatePdf = async () => {
-    let answer = prompt("R U Update English PDF","yes ,no or link");
+    let answer = prompt("R U Update English PDF", "yes ,no or link");
     // console.log(language)
-    let language 
-    if (answer === null || answer === "" || answer === 'yes ,no or link' ) {
-      alert( " cencel update")
+    let language
+    if (answer === null || answer === "" || answer === 'yes ,no or link') {
+      alert(" cencel update")
     }
     if (answer === "yes") {
-     language = "EngPDF"
+      language = "EngPDF"
     }
     if (answer === "no") {
-     language = 'HebPDF'
+      language = 'HebPDF'
     }
-    if ( answer === "link"){
+    if (answer === "link") {
       language = 'linkedin'
     }
     let pdf = this.state.img
     console.log(pdf)
     let upDate = {
-      [language] : pdf,
-      language : language
+      [language]: pdf,
+      language: language
     }
     await axios.put(`${route}upDatePdf/`, upDate)
     window.location.reload()
@@ -140,7 +141,7 @@ class App extends Component {
     let upDate = {
       language: name
     }
-    this.setState({ url : this.state[name] , language : name })
+    this.setState({ url: this.state[name], language: name })
     await axios.put(`${route}upDatePdf/`, upDate)
     // console.log(name, upDate)
     // window.location.reload()
@@ -155,10 +156,11 @@ class App extends Component {
       {this.state.changePdf ? <div> <input type="file" onChange={this.handleImage} />
         <button onClick={this.handleUpload}>Upload Image</button><button onClick={this.updatePdf}>update pdf </button></div> : null}
       <h2 className="header" > {!h ? "Mor Bargig CV" : ' מור ברגיג קו"ח'} </h2>
-      <button className={x ? "disabled" : null} name="EngPDF" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!x ? this.getPDF : null} > {!h ? 'English' : " אנגלית"} </button>
-      <button className={h ? "disabled" : null} name="HebPDF" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!h ? this.getPDF : null}  > {!h ? 'Hebrew' : "עברית"} </button>
-      <button className={l ? "disabled" : null} name="linkedin" style={x ? { paddingLeft: 5 + 'px' } : { marginRight: 5 + 'px' }} onClick={!l ? this.getPDF : null}  > {!h ? 'linkedin' : "לינקדין"} </button>
-     
+      <button className={x ? "disabled" : null} name="EngPDF" style={h ? { float : 'right' } : { float: "left"}} onClick={!x ? this.getPDF : null} > {!h ? 'English' : " אנגלית"} </button>
+      <button className={h ? "disabled" : null} name="HebPDF" style={h ? { float : 'right' } : {  float: "left" }} onClick={!h ? this.getPDF : null}  > {!h ? 'Hebrew' : "עברית"} </button>
+      <button className={l ? "disabled" : null} name="linkedin" style={h ? { float : 'right' } : { float: "left" }} onClick={!l ? this.getPDF : null}  > {!h ? 'linkedin' : "לינקדין"} </button>
+      <br></br><br></br>
+      <br></br><br></br>
       {/* <h2 className="header"> <a name="EngPDF" >   </a> || <a name="HebPDF" onClick={this.getPDF}> </a> </h2> */}
 
       <div className="topnav">
@@ -174,20 +176,38 @@ class App extends Component {
             <a href="mailto:mobargig@gmail.com" target="blank"> Email</a>
             <a onClick={this.admin} className='Admin' >Admin ?</a>
           </div>
-          : <a className="Portfolio" href="https://morbargig.github.io/morbargig/" target="blank">Portfolio</a>}
-      </div>
 
-      <embed
-        onClick={this.pdfForMobile}
-        type="application/pdf"
-        src={this.state.url}
-        width="100%" height="650px" alt="pdf"
-        pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
-        background-color="0xFF525659"
-        top-toolbar-height="56"
-        full-frame=""
-        internalinstanceid="22"
-        title="Mor Bargig"></embed>
+          :
+          <a
+            className="Portfolio"
+            href="https://morbargig.github.io/morbargig/" target="blank" style={{ marginTop: 0 + "px" }}>
+            {/* // <a>  */}
+            Portfolio <span></span>
+            <img src="./smallMorBargigSig.png" alt="Javascript"
+
+              style={{ borderRadius: 50 + '%', height: 12 + 'px', width: 12 + 'px' }}
+            ></img>
+            {/* </a>   */}
+          </a>}
+      </div>
+      {this.state.isMobile ? <div id="pdf">
+        <iframe src={this.state.url} style={{ width: 100 + '%', height: 100 + '%' }} frameborder="0" scrolling="no">
+          <p>It appears your web browser doesn't support iframes.</p>
+        </iframe>
+      </div>
+        :
+        <embed
+          onClick={this.pdfForMobile}
+          type="application/pdf"
+          src={this.state.url}
+          width="100%" height="650px" alt="pdf"
+          pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"
+          background-color="0xFF525659"
+          top-toolbar-height="56"
+          full-frame=""
+          internalinstanceid="22"
+          title="Mor Bargig"></embed>
+      }
     </div>
     );
   }
