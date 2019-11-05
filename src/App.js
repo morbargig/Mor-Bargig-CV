@@ -191,9 +191,13 @@ class App extends Component {
           </a>}
       </div>
       {this.state.isMobile ? <div id="pdf">
-        <iframe src={this.state.url} style={{ width: 375 + '%', height: 812 + 'px' }} frameborder="0" scrolling="no">
+        <iframe src={this.state.url} src={"http://docs.google.com/viewer?url=" + url + "&embedded=true"} width="100%" height="100%" style={{ width: 375 + '%', height: 812 + 'px' }} frameborder="0" scrolling="yes">
           <p>It appears your web browser doesn't support iframes.</p>
         </iframe>
+        {/* <object data="lorem.pdf" type="application/pdf">
+        <p>It appears you don't have Adobe Reader or PDF support in this web browser. <a href="lorem.pdf">Click here to download the PDF</a>. Or <a href="http://get.adobe.com/reader/" target="_blank">click here to install Adobe Reader</a>.</p>
+       <embed src="lorem.pdf" type="application/pdf" />
+</object> */}
       </div>
         :
         <embed
