@@ -2,6 +2,7 @@
 
 #private
 private
+/src/config/*
 
 # dependencies
 /node_modules
