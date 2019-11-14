@@ -5,7 +5,7 @@ and i can update them every time from the internet in easy way.
 
 
 
-[![Demo CountPages alpha](https://media.giphy.com/media/SYR1KgfTYsJsfhSj0p/giphy.gif)](https://www.youtube.com/watch?v=AYlr8CLW-RA)
+[![Demo CountPages alpha](https://media.giphy.com/media/JRm3Wmar24FtnOGVdn/giphy.gif)](https://morbargig.github.io/morbargig/)
 
 you want to use this website ? you welcome, run this command `git clone https://github.com/morbargig/Mor-Bargig-CV.git`
 
