@@ -1,6 +1,7 @@
 ## [Mor Bargig CV](https://mor-bargig-cv.herokuapp.com) 
 
-web site for my CV, so I can allway send the some CV link and update them every time from the internet.
+web site for my CV, so I can allway send the some CV link and my CV allways be up to date,
+and i can update them every time from the internet in easy way.
 
 
 
