@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import firebase from './config/firebase';
 import axios from 'axios'
 import route from './config/route'
+// import print from 'print-js'
 
 
 class App extends Component {
@@ -147,6 +148,16 @@ class App extends Component {
     // window.location.reload()
   }
 
+
+  // test = () => {
+  
+  // let    popup = window.open();
+  //   popup.document.getElementById("pdfImage");
+  //   popup.focus(); //required for IE
+  //   popup.print();
+    
+  // }
+
   render() {
     let x = this.state.language === 'EngPDF'
     let l = this.state.language === "linkedin"
@@ -191,17 +202,22 @@ class App extends Component {
           </a>}
       </div>
       {this.state.isMobile ? <div id="pdf">
-        <iframe src={this.state.url} width="100%" height="100%" style={{ width: 375 + 'px', height: 812 + 'px' }} frameborder="0" scrolling="yes">
+        <iframe id="pdf" src={this.state.url} width="100%" height="100%" style={{ width: 375 + 'px', height: 812 + 'px' }} frameborder="0" scrolling="yes">
           <p>It appears your web browser doesn't support iframes.</p>
         </iframe>
         {/* <object data="lorem.pdf" type="application/pdf">
         <p>It appears you don't have Adobe Reader or PDF support in this web browser. <a href="lorem.pdf">Click here to download the PDF</a>. Or <a href="http://get.adobe.com/reader/" target="_blank">click here to install Adobe Reader</a>.</p>
        <embed src="lorem.pdf" type="application/pdf" />
 </object> */}
+ <button type="button" onclick="printJS('docs/printjs.pdf')">
+    Print PDF
+ </button>
       </div>
         :
+        <div>
         <embed
-          onClick={this.pdfForMobile}
+        id= "pdf"
+          // onClick={this.pdfForMobile}
           type="application/pdf"
           src={this.state.url}
           width="100%" height="650px" alt="pdf"
@@ -210,11 +226,26 @@ class App extends Component {
           top-toolbar-height="56"
           full-frame=""
           internalinstanceid="22"
-          title="Mor Bargig"></embed>
+          title="Mor Bargig">
+            
+          </embed>
+
+
+ </div>
       }
+      {/* <button onClick={this.test}> </button> */}
+              {/* <a  onclick={VoucherPrint('4.jpg')} > jndksnfkjsnkfjnkjsnfk</a> */}
+              {/* <img id="pdfImage" src='smallMorBargigSig.png'></img> */}
+
+              {/* <a href="https://firebasestorage.googleapis.com/v0/b/morbargig-a81d2.appspot.com/o/MorBargigPdf%2FProfile.pdf?alt=media&downloadTokens=832dbb34-2511-4f92-b6b9-df2bf79c77ed" download>
+  <img src="MorBargigCV.pdf" alt="W3Schools" width="104" height="142"></img>
+</a> */}
+              
     </div>
     );
   }
 }
+
+
 
 export default App;
