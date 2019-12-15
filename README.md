@@ -3,7 +3,7 @@
 web site for my CV, so I can allway send the some CV link and my CV allways be up to date,
 and i can update them every time from the internet in easy way.
 
-[![Demo CountPages alpha](https://media.giphy.com/media/SYR1KgfTYsJsfhSj0p/giphy.gif)](https://www.youtube.com/watch?v=AYlr8CLW-RA)
+[![Demo CountPages alpha](https://media.giphy.com/media/ReVsLYJBNg60DrEi8j/giphy.gif)](https://www.youtube.com/watch?v=AYlr8CLW-RA)
 
 you want to use this website ? you welcome, run this command `git clone https://github.com/morbargig/Mor-Bargig-CV.git`
 
