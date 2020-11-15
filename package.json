@@ -3,19 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
-    "firebase": "^6.6.1",
-    "mongoose": "^5.7.0",
-    "print-js": "^1.0.61",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "axios": "^0.21.0",
+    "babel-cli": "^6.26.0",
+    "babel-node": "0.0.1-security",
+    "babel-preset-env": "^1.7.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "firebase": "^8.0.2",
+    "mongoose": "^5.10.14",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"nodemon server.js --exec babel-node --presets babel-preset-env\"",
+    "dev": "concurrently \"set HTTPS=true&&react-scripts start\" \"nodemon server.js --exec babel-node --presets babel-preset-env\" ",
+    "heroku": "concurrently \"set HTTPS=true&&react-scripts start\" \"heroku local -p 3030\"",
+    "noServer": "set HTTPS=true&&react-scripts start",
+    "server": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gitPush": "git add .&&git commit -m \"automatic commit\"&&git push heroku master"
   },
   "eslintConfig": {
     "extends": "react-app"
