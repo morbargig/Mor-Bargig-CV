@@ -2,7 +2,12 @@
 
 #private
 private
-/src/config/*
+# /src/config/*
+
+# local env files
+.env
+.env.local
+.env.*.local
 
 
 # dependencies
