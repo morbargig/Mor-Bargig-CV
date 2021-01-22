@@ -8,6 +8,7 @@ private
 .env
 .env.local
 .env.*.local
+.eslintcache
 
 
 # dependencies
